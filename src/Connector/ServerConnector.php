@@ -10,7 +10,7 @@ class ServerConnector implements IOutput {
 
     private $configuration;
     private $accesscontrol;
-    private $defaultPerPage = 10;
+    private $defaultPageSize = 10;
 
     public function __construct(
         IAccesscontrol $accesscontrol,
@@ -111,16 +111,16 @@ foreach ($servers as $k => $server) {
 
         // Paging
         $total = count($servers);
-        $perPage = $this->defaultPerPage;
-        $totalPages = ceil($total / $perPage);
+        $pageSize = $this->defaultPageSize;
+        $totalPages = ceil($total / $pageSize);
         $page = min(max(1, intval($_GET['page'] ?? 1)), $totalPages);
-        $offset = ($page - 1) * $perPage;
-        $pagedData = array_slice($servers, $offset, $perPage);
+        $offset = ($page - 1) * $pageSize;
+        $pagedData = array_slice($servers, $offset, $pageSize);
 
         return json_encode([
             'total' => $total,
             'page' => $page,
-            'perPage' => $perPage,
+            'pageSize' => $pageSize,
             'totalPages' => $totalPages,
             'data' => $pagedData
         ]);

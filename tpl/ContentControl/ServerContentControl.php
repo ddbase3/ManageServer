@@ -1,11 +1,7 @@
 <div id="ServerContentControl" class="contentcontrol">
-
         <div id="wrap">
-
                 <div id="serverDatatable"></div>
-
         </div>
-
 </div>
 
 <script>
@@ -26,7 +22,7 @@
   ];
 
   $('#serverDatatable').jqueryDataTable({
-    url: '?name=serverconnector&out=json',
+    dataSource: '?name=serverconnector&out=json',
     columns: columns,
     sortColumn: 'url',
     sortDirection: 'asc',
