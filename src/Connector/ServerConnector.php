@@ -3,22 +3,19 @@
 namespace ManageServer\Connector;
 
 use Base3\Api\IOutput;
+use Base3\Api\IRequest;
 use Base3\Configuration\Api\IConfiguration;
 use Base3\Accesscontrol\Api\IAccesscontrol;
 
 class ServerConnector implements IOutput {
 
-    private $configuration;
-    private $accesscontrol;
     private $defaultPageSize = 10;
 
     public function __construct(
-        IAccesscontrol $accesscontrol,
-        IConfiguration $configuration
-    ) {
-        $this->accesscontrol = $accesscontrol;
-        $this->configuration = $configuration;
-    }
+        private readonly IAccesscontrol $accesscontrol,
+        private readonly IConfiguration $configuration,
+        private readonly IRequest $request
+    ) {}
 
     // Implementation of IBase
 
@@ -91,8 +88,8 @@ foreach ($servers as $k => $server) {
 }
 
         // Sortierung
-        $sort = $_GET['sort'] ?? 'url';
-        $direction = strtolower($_GET['direction'] ?? 'asc');
+        $sort = $this->request->get('sort', 'url');
+        $direction = strtolower($this->request->get('direction', 'asc'));
         usort($servers, function ($a, $b) use ($sort, $direction) {
             $aVal = strtolower($a[$sort] ?? '');
             $bVal = strtolower($b[$sort] ?? '');
@@ -100,7 +97,7 @@ foreach ($servers as $k => $server) {
         });
 
         // Filter
-        $filters = $_GET['filter'] ?? [];
+        $filters = $this->request->get('filter', []);
         $servers = array_filter($servers, function ($server) use ($filters) {
             foreach ($filters as $key => $val) {
                 if (!isset($server[$key])) return false;
@@ -113,7 +110,7 @@ foreach ($servers as $k => $server) {
         $total = count($servers);
         $pageSize = $this->defaultPageSize;
         $totalPages = ceil($total / $pageSize);
-        $page = min(max(1, intval($_GET['page'] ?? 1)), $totalPages);
+        $page = min(max(1, intval($this->request->get('page', 1))), $totalPages);
         $offset = ($page - 1) * $pageSize;
         $pagedData = array_slice($servers, $offset, $pageSize);
 
