@@ -12,8 +12,7 @@ class ManageServerPlugin extends AbstractPlugin {
 	public function init() {
 
 		$this->container
-			->set($this->getName(), $this, IContainer::SHARED)
-			;
+			->set(self::getName(), $this, IContainer::SHARED);
 	}
 
 	// Implementation of ICheck
@@ -23,5 +22,4 @@ class ManageServerPlugin extends AbstractPlugin {
 			"Check" => "Ok"
 		);
 	}
-
 }
