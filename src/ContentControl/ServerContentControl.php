@@ -1,12 +1,27 @@
 <?php declare(strict_types=1);
 
-namespace ManageServer\ContentControl;
+/***********************************************************************
+ * This file is part of ManageServer for BASE3 Framework.
+ *
+ * ManageServer provides server administration controls.
+ * Its views are integrated into Base3Manager.
+ * Server operations keep their established service boundaries.
+ *
+ * Developed by Daniel Dahme
+ * Licensed under GPL-3.0
+ * https://www.gnu.org/licenses/gpl-3.0.en.html
+ *
+ * https://base3.de
+ ***********************************************************************/
 
-use Base3\Api\IAssetResolver;
-use Base3\Api\IMvcView;
-use Base3\LinkTarget\Api\ILinkTargetService;
-use Base3Manager\Service\Base3Manager;
-use Base3Manager\ContentControl\AbstractContentControl;
+
+namespace Base3\ManageServer\ContentControl;
+
+use Base3\CoreFoundation\Api\IAssetResolver;
+use Base3\CoreFoundation\Api\IMvcView;
+use Base3\CoreFoundation\LinkTarget\Api\ILinkTargetService;
+use Base3\Base3Manager\Service\Base3Manager;
+use Base3\Base3Manager\ContentControl\AbstractContentControl;
 
 class ServerContentControl extends AbstractContentControl {
 

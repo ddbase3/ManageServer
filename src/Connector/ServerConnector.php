@@ -1,11 +1,25 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace ManageServer\Connector;
+/***********************************************************************
+ * This file is part of ManageServer for BASE3 Framework.
+ *
+ * ManageServer provides server administration controls.
+ * Its views are integrated into Base3Manager.
+ * Server operations keep their established service boundaries.
+ *
+ * Developed by Daniel Dahme
+ * Licensed under GPL-3.0
+ * https://www.gnu.org/licenses/gpl-3.0.en.html
+ *
+ * https://base3.de
+ ***********************************************************************/
 
-use Base3\Api\IOutput;
-use Base3\Api\IRequest;
-use Base3\Configuration\Api\IConfiguration;
-use Base3\Accesscontrol\Api\IAccesscontrol;
+namespace Base3\ManageServer\Connector;
+
+use Base3\CoreFoundation\Api\IOutput;
+use Base3\CoreFoundation\Api\IRequest;
+use Base3\CoreFoundation\Configuration\Api\IConfiguration;
+use Base3\CoreFoundation\Accesscontrol\Api\IAccesscontrol;
 
 class ServerConnector implements IOutput {
 

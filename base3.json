@@ -1,0 +1,12 @@
+{
+	"manifestVersion": 1,
+	"name": "ManageServer",
+	"namespace": "Base3\\ManageServer",
+	"version": "0.0.0",
+	"description": "ManageServer provides server administration controls. Its views are integrated into Base3Manager. Server operations keep their established service boundaries.",
+	"license": "GPL-3.0",
+	"dependencies": {
+		"Base3Manager": ">=0.0.0",
+		"CoreFoundation": ">=4.10.0"
+	}
+}
